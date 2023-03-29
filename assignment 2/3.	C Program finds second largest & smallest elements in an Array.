@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+int main() {
+    int arr[10] = {23, 12, 45, 9, 67, 34, 91, 5, 16, 78};
+        int n = sizeof(arr) / sizeof(arr[0]);
+            int i, j, temp, largest, second_largest, smallest, second_smallest;
+                float avg;
+    // sort the array in descending order
+        for (i = 0; i < n - 1; i++) {
+                for (j = i + 1; j < n; j++) {
+                            if (arr[i] < arr[j]) {
+                                            temp = arr[i];
+                                                            arr[i] = arr[j];
+                                                                            arr[j] = temp;
+                                                                                        }
+                                                                                                }
+                                                                                                    }
+    // find second largest and smallest element
+        largest = arr[0];
+            second_largest = arr[1];
+                smallest = arr[n-1];
+                    second_smallest = arr[n-2];
+                        for (i = 2; i < n; i++) {
+                                if (arr[i] < largest && arr[i] > second_largest) {
+                                            second_largest = arr[i];
+                                                    }
+                                                            if (arr[i] > smallest && arr[i] < second_smallest) {
+                                                                        second_smallest = arr[i];
+                                                                                }
+                                                                            }
+                                                                                    }
+    // find average of second largest and smallest element
+        avg = (float)(second_largest + second_smallest) / 2;
+    // check if the average is present in the array
+        for (i = 0; i < n; i++) {
+                if (arr[i] == avg) {
+                            printf("The average %0.2f is present in the array.\n", avg);
+                                        break;
+                                                }
+                                                    }
+                                                        if (i == n) {
+                                                                printf("The average %0.2f is not present in the array.\n", avg);
+                                                                    }
+    return 0;
+    }
